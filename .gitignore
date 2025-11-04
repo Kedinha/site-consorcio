@@ -1,5 +1,5 @@
 # Dependencies
-**/node_modules
+/node_modules
 .pnpm-store/
 
 # Build outputs
@@ -99,6 +99,8 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+/presentation/
+consorcio.zip
 
 # Database
 *.db
