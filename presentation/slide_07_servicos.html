@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Serviços</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .accent-line {
+            width: 6px;
+            height: 50px;
+            background: #FF8C00;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 1px;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+        
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .service-item {
+            border-left: 4px solid #FF8C00;
+            padding-left: 20px;
+        }
+        
+        .service-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B4A6B;
+            margin-bottom: 8px;
+        }
+        
+        .service-description {
+            font-size: 14px;
+            color: #2C3E50;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .right-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            height: 100%;
+            align-items: stretch;
+        }
+        
+        .image-box {
+            border: 3px solid #0B4A6B;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-box::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #FF8C00;
+            opacity: 0.5;
+        }
+        
+        .image-box::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #00D4FF;
+            opacity: 0.5;
+        }
+        
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 74, 107, 0.9);
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        
+        /* Decorative elements */
+        .deco-line {
+            position: absolute;
+            background: #00D4FF;
+            opacity: 0.2;
+        }
+        
+        .deco-line-1 {
+            width: 2px;
+            height: 200px;
+            right: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .deco-line-2 {
+            width: 150px;
+            height: 2px;
+            bottom: 60px;
+            left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="deco-line deco-line-1"></div>
+        <div class="deco-line deco-line-2"></div>
+        
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="page-title">Página Serviços</h1>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="left-section">
+                <div class="service-item">
+                    <div class="service-title">Construção Civil</div>
+                    <div class="service-description">
+                        Rodovias, ferrovias, túneis, mineração, edificações comerciais e infraestrutura urbana
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-title">Terraplenagem</div>
+                    <div class="service-description">
+                        Movimentação de terra, escavação, aterros, drenagem, preparação de terrenos e obras geotécnicas
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-title">Transporte e Locações</div>
+                    <div class="service-description">
+                        Frota moderna de equipamentos: caminhões, tratores, motoniveladoras, guindastes e veículos especializados
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-title">Segurança e Sustentabilidade</div>
+                    <div class="service-description">
+                        Cumprimento de NRs, CIPA atuante, gestão de resíduos e responsabilidade ambiental
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="image-box">
+                    <img src="/home/ubuntu/upload/search_images/56kTkx3ZEHiv.webp" alt="Terraplenagem com escavadeira">
+                    <div class="image-label">TERRAPLENAGEM</div>
+                </div>
+                
+                <div class="image-box">
+                    <img src="/home/ubuntu/upload/search_images/ZvY0kJ3Cp6P0.jpg" alt="Motoniveladora em obra">
+                    <div class="image-label">CONSTRUÇÃO</div>
+                </div>
+                
+                <div class="image-box">
+                    <img src="/home/ubuntu/upload/search_images/4TDYRFXQQeMA.jpeg" alt="Viaduto de infraestrutura">
+                    <div class="image-label">INFRAESTRUTURA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

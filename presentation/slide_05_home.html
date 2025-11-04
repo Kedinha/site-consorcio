@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+            display: flex;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            align-items: flex-start;
+        }
+        
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .accent-line {
+            width: 6px;
+            height: 50px;
+            background: #FF8C00;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 1px;
+        }
+        
+        .description-box {
+            border-left: 4px solid #FF8C00;
+            padding-left: 20px;
+        }
+        
+        .description-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B4A6B;
+            margin-bottom: 10px;
+        }
+        
+        .description-text {
+            font-size: 16px;
+            color: #2C3E50;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .feature-bullet {
+            width: 24px;
+            height: 24px;
+            background: #00D4FF;
+            border: 2px solid #0B4A6B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0B4A6B;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text {
+            font-size: 15px;
+            color: #2C3E50;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .section-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #00D4FF;
+            letter-spacing: 2px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .summary-item {
+            border: 2px solid #0B4A6B;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            min-height: 140px;
+            justify-content: center;
+        }
+        
+        .summary-item::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #FF8C00;
+            opacity: 0.4;
+        }
+        
+        .summary-item::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #00D4FF;
+            opacity: 0.4;
+        }
+        
+        .summary-icon {
+            font-size: 32px;
+            z-index: 2;
+        }
+        
+        .summary-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0B4A6B;
+            text-align: center;
+            z-index: 2;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Decorative elements */
+        .deco-line {
+            position: absolute;
+            background: #FF8C00;
+            opacity: 0.2;
+        }
+        
+        .line-1 {
+            width: 2px;
+            height: 100px;
+            bottom: 100px;
+            right: 80px;
+        }
+        
+        .line-2 {
+            width: 80px;
+            height: 2px;
+            bottom: 50px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="deco-line line-1"></div>
+        <div class="deco-line line-2"></div>
+        
+        <div class="content-wrapper">
+            <div class="left-section">
+                <div class="header">
+                    <div class="accent-line"></div>
+                    <h1 class="page-title">Página Home</h1>
+                </div>
+                
+                <div class="description-box">
+                    <div class="description-title">Hero Section Impactante</div>
+                    <div class="description-text">
+                        Apresentação visual atraente com tagline "Construções • Terraplenagem • Locações" que comunica imediatamente os serviços principais do Consórcio.
+                    </div>
+                </div>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div class="feature-text">Apresentação visual profissional</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div class="feature-text">Sumário com 6 cards interativos</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div class="feature-text">Chamadas para ação estratégicas</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div class="feature-text">Design totalmente responsivo</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="section-label">ÁREAS PRINCIPAIS</div>
+                
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-icon">🏠</div>
+                        <div class="summary-name">Introdução</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">🏗️</div>
+                        <div class="summary-name">Áreas de Atuação</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">🎯</div>
+                        <div class="summary-name">Visão e Valores</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">👥</div>
+                        <div class="summary-name">Empresas Consorciadas</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">📋</div>
+                        <div class="summary-name">Dados Técnicos</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon">🚚</div>
+                        <div class="summary-name">Equipamentos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

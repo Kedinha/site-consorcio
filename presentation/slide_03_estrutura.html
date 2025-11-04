@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura do Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .accent-line {
+            width: 6px;
+            height: 50px;
+            background: #FF8C00;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 1px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-box {
+            border: 3px solid #0B4A6B;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+        
+        .page-box::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #FF8C00;
+            opacity: 0.5;
+        }
+        
+        .page-box::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00D4FF;
+            opacity: 0.5;
+        }
+        
+        .page-number {
+            font-size: 14px;
+            color: #00D4FF;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .page-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0B4A6B;
+            margin-bottom: 15px;
+        }
+        
+        .page-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .page-description {
+            font-size: 14px;
+            color: #2C3E50;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        /* Decorative elements */
+        .deco-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid;
+            opacity: 0.3;
+        }
+        
+        .corner-1 {
+            top: 40px;
+            right: 40px;
+            border-color: #FF8C00;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-2 {
+            bottom: 40px;
+            left: 40px;
+            border-color: #00D4FF;
+            border-left: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="deco-corner corner-1"></div>
+        <div class="deco-corner corner-2"></div>
+        
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="page-title">Estrutura do Site</h1>
+        </div>
+        
+        <div class="content">
+            <div class="page-box">
+                <div>
+                    <div class="page-number">PÁGINA 01</div>
+                    <div class="page-name">Home</div>
+                    <div class="page-icon">🏠</div>
+                </div>
+                <div class="page-description">
+                    Hero section impactante com apresentação principal e sumário das 6 áreas de atuação
+                </div>
+            </div>
+            
+            <div class="page-box">
+                <div>
+                    <div class="page-number">PÁGINA 02</div>
+                    <div class="page-name">Sobre</div>
+                    <div class="page-icon">ℹ️</div>
+                </div>
+                <div class="page-description">
+                    Quem somos, visão, missão, valores e 5 diferenciais competitivos do Consórcio
+                </div>
+            </div>
+            
+            <div class="page-box">
+                <div>
+                    <div class="page-number">PÁGINA 03</div>
+                    <div class="page-name">Serviços</div>
+                    <div class="page-icon">🔧</div>
+                </div>
+                <div class="page-description">
+                    Construção Civil, Terraplenagem, Locações e equipamentos disponíveis
+                </div>
+            </div>
+            
+            <div class="page-box">
+                <div>
+                    <div class="page-number">PÁGINA 04</div>
+                    <div class="page-name">Contato</div>
+                    <div class="page-icon">📞</div>
+                </div>
+                <div class="page-description">
+                    Formulário interativo, informações de contato e mapa de localização
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

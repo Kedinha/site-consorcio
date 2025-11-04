@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia e Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .accent-line {
+            width: 6px;
+            height: 50px;
+            background: #FF8C00;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 1px;
+        }
+        
+        .tech-category {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .category-label {
+            font-size: 12px;
+            color: #00D4FF;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border-left: 3px solid #FF8C00;
+        }
+        
+        .tech-icon {
+            width: 32px;
+            height: 32px;
+            background: #FF8C00;
+            border: 2px solid #0B4A6B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .tech-name {
+            font-size: 15px;
+            color: #0B4A6B;
+            font-weight: 600;
+        }
+        
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .benefits-box {
+            border: 3px solid #0B4A6B;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .benefits-box::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #FF8C00;
+            opacity: 0.5;
+        }
+        
+        .benefits-box::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00D4FF;
+            opacity: 0.5;
+        }
+        
+        .benefits-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 0.5px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            background: #00D4FF;
+            border: 2px solid #0B4A6B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0B4A6B;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .benefit-text {
+            font-size: 14px;
+            color: #2C3E50;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .metric-box {
+            border: 2px solid #00D4FF;
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        .metric-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #0B4A6B;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Decorative elements */
+        .deco-line-1 {
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            background: #00D4FF;
+            opacity: 0.2;
+            top: 100px;
+            right: 120px;
+        }
+        
+        .deco-line-2 {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: #FF8C00;
+            opacity: 0.2;
+            bottom: 80px;
+            left: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="deco-line-1"></div>
+        <div class="deco-line-2"></div>
+        
+        <div class="left-content">
+            <div class="header">
+                <div class="accent-line"></div>
+                <h1 class="page-title">Tecnologia e Performance</h1>
+            </div>
+            
+            <div class="tech-category">
+                <div class="category-label">Frontend</div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚛</div>
+                    <div class="tech-name">React 19 + TypeScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">Tailwind CSS 4</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧭</div>
+                    <div class="tech-name">Wouter Routing</div>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <div class="category-label">Arquitetura</div>
+                <div class="tech-item">
+                    <div class="tech-icon">📦</div>
+                    <div class="tech-name">Componentes Modulares</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔄</div>
+                    <div class="tech-name">Reutilização de Código</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">Otimização de Performance</div>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <div class="category-label">Ferramentas</div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚙</div>
+                    <div class="tech-name">Vite Build Tool</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">✓</div>
+                    <div class="tech-name">Linting & Formatting</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-content">
+            <div class="benefits-box">
+                <div class="benefits-title">Benefícios Técnicos</div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Código robusto e manutenível com TypeScript</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Design responsivo garantido por Tailwind</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Carregamento rápido e otimizado</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Fácil manutenção e expansão futura</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">SEO otimizado para buscadores</div>
+                </div>
+            </div>
+            
+            <div class="performance-metrics">
+                <div class="metric-box">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Responsivo</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">A+</div>
+                    <div class="metric-label">Performance</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Páginas</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">∞</div>
+                    <div class="metric-label">Escalável</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

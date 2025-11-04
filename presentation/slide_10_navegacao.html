@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegação e UX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Blueprint grid */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .accent-line {
+            width: 6px;
+            height: 50px;
+            background: #FF8C00;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4A6B;
+            letter-spacing: 1px;
+        }
+        
+        .section-label {
+            font-size: 14px;
+            color: #00D4FF;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B4A6B;
+            margin-bottom: 15px;
+        }
+        
+        .nav-structure {
+            border: 2px solid #0B4A6B;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+        }
+        
+        .nav-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #2C3E50;
+            font-weight: 500;
+        }
+        
+        .nav-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .nav-bullet {
+            color: #FF8C00;
+            font-weight: bold;
+            min-width: 20px;
+        }
+        
+        .nav-text {
+            line-height: 1.5;
+        }
+        
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-box {
+            border-left: 4px solid #FF8C00;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(11, 74, 107, 0.03) 0%, rgba(0, 212, 255, 0.03) 100%);
+        }
+        
+        .feature-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B4A6B;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 18px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: #2C3E50;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            color: #2C3E50;
+            line-height: 1.4;
+        }
+        
+        .feature-bullet {
+            color: #00D4FF;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        
+        /* Decorative elements */
+        .deco-line-1 {
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            background: #00D4FF;
+            opacity: 0.2;
+            top: 150px;
+            right: 100px;
+        }
+        
+        .deco-line-2 {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: #FF8C00;
+            opacity: 0.2;
+            bottom: 100px;
+            left: 80px;
+        }
+        
+        .deco-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid;
+            opacity: 0.2;
+        }
+        
+        .corner-1 {
+            top: 40px;
+            right: 40px;
+            border-color: #FF8C00;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-2 {
+            bottom: 40px;
+            left: 40px;
+            border-color: #00D4FF;
+            border-left: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="deco-line-1"></div>
+        <div class="deco-line-2"></div>
+        <div class="deco-corner corner-1"></div>
+        <div class="deco-corner corner-2"></div>
+        
+        <div class="left-content">
+            <div class="header">
+                <div class="accent-line"></div>
+                <h1 class="page-title">Navegação e UX</h1>
+            </div>
+            
+            <div>
+                <div class="section-label">ESTRUTURA DE NAVEGAÇÃO</div>
+                <div class="section-title">Menu Principal</div>
+                <div class="nav-structure">
+                    <div class="nav-item">
+                        <span class="nav-bullet">→</span>
+                        <span class="nav-text"><strong>Home:</strong> Apresentação e sumário</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">→</span>
+                        <span class="nav-text"><strong>Sobre:</strong> História e valores</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">→</span>
+                        <span class="nav-text"><strong>Serviços:</strong> Áreas de atuação</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">→</span>
+                        <span class="nav-text"><strong>Contato:</strong> Formulário e mapa</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="section-label">RESPONSIVIDADE</div>
+                <div class="section-title">Multi-Dispositivo</div>
+                <div class="nav-structure">
+                    <div class="nav-item">
+                        <span class="nav-bullet">✓</span>
+                        <span class="nav-text">Desktop otimizado</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">✓</span>
+                        <span class="nav-text">Tablet responsivo</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">✓</span>
+                        <span class="nav-text">Mobile-first design</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-bullet">✓</span>
+                        <span class="nav-text">Menu adaptativo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-content">
+            <div class="feature-box">
+                <div class="feature-title">
+                    <span class="feature-icon">🎨</span>
+                    Cores Estratégicas
+                </div>
+                <div class="feature-description">
+                    Uso inteligente da paleta de cores para guiar o usuário através do site
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Azul Petróleo para elementos principais</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Laranja para chamadas à ação</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Ciano para acentos secundários</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-title">
+                    <span class="feature-icon">🔗</span>
+                    Chamadas para Ação
+                </div>
+                <div class="feature-description">
+                    Botões destacados em laranja para maximizar conversão
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>"Entre em Contato" na Home</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>"Solicitar Orçamento" visível</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Formulário interativo</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-title">
+                    <span class="feature-icon">♿</span>
+                    Acessibilidade
+                </div>
+                <div class="feature-description">
+                    Design inclusivo com boa legibilidade e contraste
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Contraste de cores otimizado</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Tipografia clara e legível</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-bullet">•</span>
+                        <span>Navegação por teclado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
